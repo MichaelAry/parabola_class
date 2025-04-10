@@ -19,7 +19,7 @@ class Parabola {
 
   setCoefPower2(value) {
     const a = parseFloat(value);
-    if (a === 0) {
+    if (a == 0) {
       throw new Error("coefficient for the 2nd power can't be equal to 0");
     }
     this.#coefPower2 = a;
