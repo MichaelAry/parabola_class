@@ -183,6 +183,7 @@ class Parabola {
         },${this.#vertex[1]})`
       );
   }
+  
 }
 try {
   const p1 = new Parabola("p1", 1, 2, 3);
