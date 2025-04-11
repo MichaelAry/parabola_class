@@ -161,14 +161,6 @@ class Parabola {
     else console.log(`point (${x},${y}) doesn't lie on ${this.#name}`);
   }
 
-  infoAboutParabola() {
-    console.log(`${this}`);
-    console.log(
-      `vertex: (${this.#vertex[0].toFixed(2)}, ${this.#vertex[1].toFixed(2)})`
-    );
-    this.parabolaOpeningDirection();
-  }
-
   getExtremeValue() {
     if (this.#coefPower2 > 0) {
       console.log(
@@ -183,7 +175,14 @@ class Parabola {
         },${this.#vertex[1]})`
       );
   }
-  
+
+  infoAboutParabola() {
+    console.log(`${this}`);
+    console.log(
+      `vertex: (${this.#vertex[0].toFixed(2)}, ${this.#vertex[1].toFixed(2)})`
+    );
+    this.parabolaOpeningDirection();
+  }
 }
 try {
   const p1 = new Parabola("p1", 1, 2, 3);
