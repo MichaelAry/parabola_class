@@ -6,18 +6,18 @@ class Parabola {
   #vertex;
 
   constructor(name, coefPower2, coefPower1, coefPower0) {
-    this.setName(name);
-    this.setCoefPower2(coefPower2);
-    this.setCoefPower1(coefPower1);
-    this.setCoefPower0(coefPower0);
+    this.#setName(name);
+    this.#setCoefPower2(coefPower2);
+    this.#setCoefPower1(coefPower1);
+    this.#setCoefPower0(coefPower0);
     this.#vertex = this.#calculateVertex();
   }
 
-  setName(value) {
+  #setName(value) {
     this.#name = String(value);
   }
 
-  setCoefPower2(value) {
+  #setCoefPower2(value) {
     const a = parseFloat(value);
     if (a == 0) {
       throw new Error("coefficient for the 2nd power can't be equal to 0");
@@ -26,12 +26,12 @@ class Parabola {
     this.#updateVertex();
   }
 
-  setCoefPower1(value) {
+  #setCoefPower1(value) {
     this.#coefPower1 = parseFloat(value);
     this.#updateVertex();
   }
 
-  setCoefPower0(value) {
+  #setCoefPower0(value) {
     this.#coefPower0 = parseFloat(value);
     this.#updateVertex();
   }
@@ -46,7 +46,7 @@ class Parabola {
     this.#vertex = this.#calculateVertex();
   }
 
-  add(other) {
+  sum(other) {
     if (!(other instanceof Parabola)) {
       throw new Error("can be summed only with another Parabola");
     }
@@ -79,14 +79,14 @@ class Parabola {
     );
   }
 
-  set(other) {
+  setParabola(other) {
     if (!(other instanceof Parabola)) {
       throw new Error("can set only Parabola children");
     }
-    this.setName(other.#name);
-    this.setCoefPower2(other.#coefPower2);
-    this.setCoefPower1(other.#coefPower1);
-    this.setCoefPower0(other.#coefPower0);
+    this.#setName(other.#name);
+    this.#setCoefPower2(other.#coefPower2);
+    this.#setCoefPower1(other.#coefPower1);
+    this.#setCoefPower0(other.#coefPower0);
   }
 
   areEqual(other) {
@@ -134,13 +134,6 @@ class Parabola {
     }`;
   }
 
-  infoAboutParabola() {
-    console.log(`${this}`);
-    console.log(
-      `vertex: (${this.#vertex[0].toFixed(2)}, ${this.#vertex[1].toFixed(2)})`
-    );
-  }
-
   parabolaValueAtPoint(x) {
     const value = this.calculateValueAtPoint(x);
     console.log(
@@ -148,6 +141,26 @@ class Parabola {
         this.#name
       } at point x = ${x} takes value of y = ${value.toFixed(2)}`
     );
+  }
+
+  moveByYAxis(y) {
+    this.#coefPower0 += y;
+  }
+
+  parabolaOpeningDirection() {
+    if (this.#coefPower2 > 0) {
+      console.log(`parabola ${this.#name} opens upwards`);
+    } else {
+      console.log(`parabola ${this.#name} opens downwards`);
+    }
+  }
+
+  infoAboutParabola() {
+    console.log(`${this}`);
+    console.log(
+      `vertex: (${this.#vertex[0].toFixed(2)}, ${this.#vertex[1].toFixed(2)})`
+    );
+    this.parabolaOpeningDirection();
   }
 }
 
@@ -168,7 +181,7 @@ try {
   console.log("parabolas are equal:", p1.areEqual(p2));
   console.log();
 
-  const p3 = p1.add(p2);
+  const p3 = p1.sum(p2);
   console.log("p1 + p2 =");
   p3.infoAboutParabola();
   p3.parabolaValueAtPoint(2);
@@ -188,8 +201,10 @@ try {
   console.log("p2 after setting it to p3:");
   p2.infoAboutParabola();
   console.log();
-  
-  console.log(p1 + " surikat");
+  p2.moveByYAxis(2312345678905);
+  p2.infoAboutParabola();
+
+  console.log(p1 + " SurikatikusPortus");
   console.log();
 } catch (error) {
   console.error("error:", error.message);
