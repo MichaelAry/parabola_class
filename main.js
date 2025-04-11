@@ -155,18 +155,6 @@ class Parabola {
     }
   }
 
-  integral(x1, x2) {
-    const f = (x) =>
-      (this.#coefPower2 / 3) * Math.pow(x, 3) +
-      (this.#coefPower1 / 2) * Math.pow(x, 2) +
-      this.#coefPower0 * x;
-    console.log(
-      `parabola's ${this.#name} integral from ${x1} to ${x2} equals ${(
-        f(x2) - f(x1)
-      ).toFixed(2)}`
-    );
-  }
-
   infoAboutParabola() {
     console.log(`${this}`);
     console.log(
@@ -215,7 +203,4 @@ p2.moveByYAxis(2312345678905);
 p2.infoAboutParabola();
 
 console.log(p1 + " SurikatikusPortus");
-console.log();
-
-p1.integral(0, 1);
 console.log();
