@@ -5,7 +5,7 @@ class Parabola {
   #coefPower0;
   #vertex;
 
-  constructor(name, coefPower2, coefPower1, coefPower0) {
+  constructor(name, coefPower2, coefPower1 = 0, coefPower0 = 0) {
     this.#setName(name);
     this.#setCoefPower2(coefPower2);
     this.#setCoefPower1(coefPower1);
@@ -155,12 +155,33 @@ class Parabola {
     }
   }
 
+  isPointOnParabola(x, y) {
+    const calcedY = this.calculateValueAtPoint(x);
+    if (calcedY == y) console.log(`point (${x},${y}) lies on ${this.#name}`);
+    else console.log(`point (${x},${y}) doesn't lie on ${this.#name}`);
+  }
+
   infoAboutParabola() {
     console.log(`${this}`);
     console.log(
       `vertex: (${this.#vertex[0].toFixed(2)}, ${this.#vertex[1].toFixed(2)})`
     );
     this.parabolaOpeningDirection();
+  }
+
+  getExtremeValue() {
+    if (this.#coefPower2 > 0) {
+      console.log(
+        `parabola ${this.name} takes its minimum value at point (${
+          this.#vertex[0]
+        },${this.#vertex[1]})`
+      );
+    } else
+      console.log(
+        `parabola ${this.name} takes its maximum value at point (${
+          this.#vertex[0]
+        },${this.#vertex[1]})`
+      );
   }
 }
 try {
@@ -205,8 +226,13 @@ try {
 
   console.log(p1 + " SurikatikusPortus");
   console.log();
+
+  p1.isPointOnParabola(1, 6);
+  console.log();
+
+  p1.getExtremeValue();
+  console.log();
 } catch (error) {
   console.error("error:", error.message);
-
   console.log("працягваем з тым, што маем");
 }
