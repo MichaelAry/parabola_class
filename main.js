@@ -155,6 +155,15 @@ class Parabola {
     }
   }
 
+  integral(x1, x2) {
+    const f = (x) =>
+      (this.#coefPower2 / 3) * Math.pow(x, 3) +
+      (this.#coefPower1 / 2) * Math.pow(x, 2) +
+      this.#coefPower0 * x;
+    return f(x2) - f(x1);
+  }
+
+
   infoAboutParabola() {
     console.log(`${this}`);
     console.log(
@@ -163,49 +172,47 @@ class Parabola {
     this.parabolaOpeningDirection();
   }
 }
+const p1 = new Parabola("p1", 1, 2, 3);
+const p2 = new Parabola("p2", "1", 2, "3");
 
-try {
-  const p1 = new Parabola("p1", 1, 2, 3);
-  const p2 = new Parabola("p2", "1", 2, "3");
+console.log("created parabolas:");
+p1.infoAboutParabola();
+p1.parabolaValueAtPoint(1);
+p1.calculateZeroesAxisX();
+console.log();
 
-  console.log("created parabolas:");
-  p1.infoAboutParabola();
-  p1.parabolaValueAtPoint(1);
-  p1.calculateZeroesAxisX();
-  console.log();
+p2.infoAboutParabola();
+p2.parabolaValueAtPoint(2);
+console.log();
 
-  p2.infoAboutParabola();
-  p2.parabolaValueAtPoint(2);
-  console.log();
+console.log("parabolas are equal:", p1.areEqual(p2));
+console.log();
 
-  console.log("parabolas are equal:", p1.areEqual(p2));
-  console.log();
+const p3 = p1.sum(p2);
+console.log("p1 + p2 =");
+p3.infoAboutParabola();
+p3.parabolaValueAtPoint(2);
+console.log();
 
-  const p3 = p1.sum(p2);
-  console.log("p1 + p2 =");
-  p3.infoAboutParabola();
-  p3.parabolaValueAtPoint(2);
-  console.log();
+const p4 = p1.multiplyByNumber(6);
+console.log("p 1 * 6 =");
+p4.infoAboutParabola();
+console.log();
 
-  const p4 = p1.multiplyByNumber(6);
-  console.log("p 1 * 6 =");
-  p4.infoAboutParabola();
-  console.log();
+const p5 = p4.subtract(p1);
+console.log("p4 - p1 =");
+p5.infoAboutParabola();
+console.log();
 
-  const p5 = p4.subtract(p1);
-  console.log("p4 - p1 =");
-  p5.infoAboutParabola();
-  console.log();
+p2.setParabola(p3);
+console.log("p2 after setting it to p3:");
+p2.infoAboutParabola();
+console.log();
+p2.moveByYAxis(2312345678905);
+p2.infoAboutParabola();
 
-  p2.set(p3);
-  console.log("p2 after setting it to p3:");
-  p2.infoAboutParabola();
-  console.log();
-  p2.moveByYAxis(2312345678905);
-  p2.infoAboutParabola();
+console.log(p1 + " SurikatikusPortus");
+console.log();
 
-  console.log(p1 + " SurikatikusPortus");
-  console.log();
-} catch (error) {
-  console.error("error:", error.message);
-}
+p1.integral(0,1);
+console.log();
